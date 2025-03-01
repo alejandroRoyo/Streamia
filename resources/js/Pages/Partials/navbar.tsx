@@ -1,17 +1,23 @@
 export default function Navbar() {
     return (
-        <nav className="bg-stone-950 flex items-center justify-between flex-wrap text-white p-6 shadow-lg ">
-            <a href="/" className="bg-stone-950 text-white rounded-full leading-5 px-5 py-2 font-semibold text-center">Streamia</a>
-            <div>
-                <ul>
-                    <a href="/login" className="bg-stone-950 text-white rounded-full leading-5 px-5 py-2 font-semibold text-center">
-                        Iniciar Sesión
-                    </a>
-                    <a href="/register" className="bg-blue-700/100 hover:bg-blue-700/60 text-white rounded-full leading-5 px-5 py-2 font-semibold text-center">
-                        Registrarse
-                    </a>
-                </ul>
-            </div>
-        </nav>
+      <nav className="bg-stone-950 flex items-center justify-between p-6 shadow-lg">
+        <a href="/" className="text-white text-2xl font-bold">
+          Streamia
+        </a>
+        <div className="flex gap-4">
+          <a
+            href="/login"
+            className="text-white px-5 py-2 rounded-full font-semibold transition duration-200 hover:bg-stone-800"
+          >
+            Iniciar Sesión
+          </a>
+          <a
+            href="/register"
+            className="bg-blue-700 hover:bg-blue-600 text-white px-5 py-2 rounded-full font-semibold transition duration-200"
+          >
+            Registrarse
+          </a>
+        </div>
+      </nav>
     );
-}
+  }

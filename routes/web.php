@@ -23,4 +23,13 @@ Route::get('/login', function () {
     ]);
 });
 
+Route::get('/register', function () {
+    return Inertia::render('log/register', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
 require __DIR__.'/auth.php';
