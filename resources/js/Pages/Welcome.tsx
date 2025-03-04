@@ -1,7 +1,7 @@
 import { PageProps } from "@/types";
 import { Head, Link } from "@inertiajs/react";
 import Navbar from "@/Pages/Partials/navbar";
-// import TargetaPrecio from "@/Pages/Components/precio";
+import Precio from "@/Pages/Components/precio";
 
 export default function Welcome({
     auth,
@@ -21,7 +21,8 @@ export default function Welcome({
 
     return (
         <>
-            <Head title="Streamia" />
+            <Head title="Inicio" />
+
             <div className="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
                 <Navbar />
             </div>
@@ -39,7 +40,75 @@ export default function Welcome({
                     </a>
                 </div>
             </div>
-            
+
+            <section className="bg-blue-600 py-16 px-6">
+                <h2 className="text-3xl text-white font-semibold text-center mb-5">
+                    Elige tu plan
+                </h2>
+                <div className="flex flex-wrap justify-center items-center gap-6">
+                    <Precio
+                        title="Básico"
+                        features={["2 dispositivos", "1080p", "Con publicidad"]}
+                    />
+                    <Precio
+                        title="Estándar"
+                        features={[
+                            "3 dispositivos",
+                            "Full HD",
+                            "Sin publicidad",
+                        ]}
+                    />
+                    <Precio
+                        title="Premium"
+                        features={[
+                            "4 dispositivos",
+                            "4K HDR",
+                            "Sin publicidad",
+                        ]}
+                    />
+                    <Precio
+                        title="Familiar"
+                        features={[
+                            "6 dispositivos",
+                            "4K HDR",
+                            "Descargas disponibles",
+                        ]}
+                    />
+                </div>
+            </section>
+
+            <section className="text-white bg-stone-900 py-16 px-6">
+                <div className="max-w-screen-lg mx-auto">
+                    <h1 className="text-center text-4xl font-bold mb-8">
+                        Streamia
+                    </h1>
+                    <ul className="space-y-8">
+                        <li>
+                            <h2 className="text-2xl font-semibold">
+                                ¿Qué es Streamia?
+                            </h2>
+                            <p className="text-stone-300 mt-2">
+                                Streamia es un servicio de streaming de
+                                películas y series que ofrece una amplia
+                                variedad de contenidos, incluyendo películas,
+                                series, documentales, programas de televisión y
+                                más.
+                            </p>
+                        </li>
+                        <li>
+                            <h2 className="text-2xl font-semibold">
+                                ¿Cómo funciona Streamia?
+                            </h2>
+                            <p className="text-stone-300 mt-2">
+                                Streamia te permite ver contenido en cualquier
+                                momento, desde cualquier dispositivo con
+                                conexión a Internet. Solo necesitas elegir tu
+                                plan y comenzar a disfrutar.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
         </>
     );
 }
