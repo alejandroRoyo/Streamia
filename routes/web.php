@@ -32,4 +32,10 @@ Route::get('/register', function () {
     ]);
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/protegida', function () {
+        return Inertia::render('Protegida');
+    })->name('protegida');
+});
+
 require __DIR__.'/auth.php';
