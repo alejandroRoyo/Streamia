@@ -13,14 +13,13 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
         // Crear el usuario con los datos validados
-        $user = Cuentas::create([
-            'name' => $request->name,
+        $cuenta = Cuentas::create([
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
 
         // Iniciar sesión automáticamente con el nuevo usuario
-        Auth::login($user);
+        Auth::login($cuenta);
 
         // Redirige al usuario a la página de inicio
         return redirect('/');

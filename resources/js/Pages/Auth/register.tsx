@@ -2,7 +2,6 @@ import { Head, useForm } from "@inertiajs/react";
 
 export default function Register() {
     const { data, setData, post, processing } = useForm({
-        name: "",
         email: "",
         password: "",
         password_confirmation: "",
@@ -30,14 +29,6 @@ export default function Register() {
                     <div className="flex flex-col gap-4">
                         <input
                             type="text"
-                            name="name"
-                            value={data.name}
-                            onChange={(e) => setData("name", e.target.value)}
-                            placeholder="Nombre"
-                            className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-                        />
-                        <input
-                            type="text"
                             name="email"
                             value={data.email}
                             onChange={(e) => setData("email", e.target.value)}
@@ -48,7 +39,9 @@ export default function Register() {
                             type="password"
                             name="password"
                             value={data.password}
-                            onChange={(e) => setData("password", e.target.value)}
+                            onChange={(e) =>
+                                setData("password", e.target.value)
+                            }
                             placeholder="Contraseña"
                             className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                         />
@@ -56,7 +49,9 @@ export default function Register() {
                             type="password"
                             name="password_confirmation"
                             value={data.password_confirmation}
-                            onChange={(e) => setData("password_confirmation", e.target.value)}
+                            onChange={(e) =>
+                                setData("password_confirmation", e.target.value)
+                            }
                             placeholder="Confirmar contraseña"
                             className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                         />
@@ -70,7 +65,10 @@ export default function Register() {
                     </div>
                     <div className="text-center mt-4 text-sm text-gray-400">
                         ¿Ya tienes cuenta?{" "}
-                        <a href="/login" className="text-blue-500 hover:underline">
+                        <a
+                            href="/login"
+                            className="text-blue-500 hover:underline"
+                        >
                             Inicia sesión
                         </a>
                     </div>

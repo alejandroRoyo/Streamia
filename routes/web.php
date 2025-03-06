@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
@@ -20,6 +21,8 @@ Route::middleware('guest')->group(function () {
         return Inertia::render('Auth/login');
     })->name('login');
 
+    Route::post('/login', [LoginController::class, 'login']);
+
     Route::get('/register', function () {
         return Inertia::render('Auth/register');
     })->name('register');
@@ -33,4 +36,4 @@ Route::middleware('auth')->group(function () {
     })->name('protegida');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

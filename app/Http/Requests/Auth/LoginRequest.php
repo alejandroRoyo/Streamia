@@ -19,6 +19,11 @@ class LoginRequest extends FormRequest
         return true;
     }
 
+    public function getCredentials(): array
+    {
+        return $this->only('email', 'password');
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -80,6 +85,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
     }
 }
