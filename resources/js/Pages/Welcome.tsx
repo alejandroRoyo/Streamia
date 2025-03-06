@@ -31,12 +31,16 @@ export default function Welcome({
                     <h2 className="text-black font-semibold text-3xl content-center">
                         Peliculas y series sin límites y mucho más
                     </h2>
-                    <p>texto de prueba</p>
+                    <p>
+                        Empieza a disfrutar con los planes de Streamia desde
+                        6,99 € o gratis con anuncios.
+                    </p>
+                    <p className="mb-2">Cancela cuando quieras.</p>
                     <a
-                        href="/login"
-                        className="text-white px-5 py-2 rounded-full font-semibold transition duration-200 hover:bg-stone-800"
+                        href="/register"
+                        className="bg-blue-700 hover:bg-blue-600 text-white px-5 py-2 rounded-full font-semibold transition duration-200"
                     >
-                        Iniciar Sesión
+                        Registrarse
                     </a>
                 </div>
             </div>
