@@ -10,7 +10,7 @@ export default function Register() {
     });
 
     const [paginacion, setPaginacion] = useState(1);
-    const [usuarios, setUsuarios] = useState(0);
+    const [usuarios, setUsuarios] = useState(4);
     function anteriorPaso() {
         if (paginacion - 1 < 1) {
             setPaginacion(1);
@@ -29,6 +29,33 @@ export default function Register() {
 
     function annadirUsuario() {
         setUsuarios(usuarios + 1);
+    }
+
+    function ponerUsuarios(usuarios: number) {
+        const listaUsuarios = [];
+        for (let i = 0; i < usuarios; i++) {
+            listaUsuarios.push(
+                <>
+                    <input
+                        type="text"
+                        name="usuario"
+                        id="usuario"
+                        placeholder="Usuario"
+                        className="bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                    />
+                    <label htmlFor="" className="text-white">
+                        ¿Perfil infantil?
+                    </label>
+                    <input
+                        type="checkbox"
+                        name="infantil"
+                        id="infantil"
+                        className="bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                    />
+                </>
+            );
+        }
+        return listaUsuarios;
     }
 
     const submit = (e: React.FormEvent) => {
@@ -200,6 +227,7 @@ export default function Register() {
                                 className="bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                             />
                         </div>
+                        {ponerUsuarios(usuarios)}
                     </>
                 ) : (
                     <div className="text-white">Otro contenido</div>
