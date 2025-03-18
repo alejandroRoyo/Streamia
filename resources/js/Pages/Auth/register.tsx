@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Precio from "../Components/precio";
+import Plan from "../Components/elegirPlan";
 import { Head, useForm } from "@inertiajs/react";
 
 export default function Register() {
@@ -144,37 +144,33 @@ export default function Register() {
                                 Elige tu plan
                             </h2>
                             <div className="flex flex-wrap justify-center items-center gap-6">
-                                <Precio
-                                    title="Básico"
-                                    features={[
-                                        "2 dispositivos",
-                                        "1080p",
-                                        "Con publicidad",
-                                    ]}
+                                <Plan
+                                    nombre="Basico"
+                                    dispositivos={2}
+                                    calidad='1080p'
+                                    precio={5.99}
+                                    publicidad={true}
                                 />
-                                <Precio
-                                    title="Estándar"
-                                    features={[
-                                        "3 dispositivos",
-                                        "Full HD",
-                                        "Sin publicidad",
-                                    ]}
+                                <Plan
+                                    nombre="Estándar"
+                                    dispositivos={3}
+                                    calidad='Full HD'
+                                    precio={10.99}
+                                    publicidad={false}
                                 />
-                                <Precio
-                                    title="Premium"
-                                    features={[
-                                        "4 dispositivos",
-                                        "4K HDR",
-                                        "Sin publicidad",
-                                    ]}
+                                <Plan
+                                    nombre="Premium"
+                                    dispositivos={4}
+                                    calidad='4K HDR'
+                                    precio={15.99}
+                                    publicidad={false}
                                 />
-                                <Precio
-                                    title="Familiar"
-                                    features={[
-                                        "6 dispositivos",
-                                        "4K HDR",
-                                        "Descargas disponibles",
-                                    ]}
+                                <Plan
+                                    nombre="Familiar"
+                                    dispositivos={6}
+                                    calidad='4K HDR'
+                                    precio={19.99}
+                                    publicidad={false}
                                 />
                             </div>
                         </section>
