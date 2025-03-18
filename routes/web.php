@@ -27,7 +27,10 @@ Route::middleware('guest')->group(function () {
         return Inertia::render('Auth/register');
     })->name('register');
 
-    Route::post('/register', [RegisterController::class, 'register']);
+    // Route::post('/register', [RegisterController::class, 'register']);
+    Route::post('/register', function () {
+        dd(request()->all());
+    });
 });
 
 Route::middleware('auth')->group(function () {

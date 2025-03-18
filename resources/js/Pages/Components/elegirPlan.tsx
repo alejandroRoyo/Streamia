@@ -1,4 +1,4 @@
-export default function elegirPlan({
+export default function ElegirPlan({
     nombre,
     dispositivos,
     calidad,
@@ -14,39 +14,17 @@ export default function elegirPlan({
     onClick: () => void;
 }) {
     return (
-        <>
-            <div>
-                <label htmlFor="plan">
-                    <h2>{nombre}</h2>
-                    <input type="radio" name="plan" id="plan" />
-                </label>
-                <ul>
-                    <li>
-                        <div>
-                            <div>Precio Mensual</div>
-                            <div>{precio}</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <div>Calidad de vídeo y audioi</div>
-                            <div>{calidad}</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <div>Dispositivos</div>
-                            <div>{dispositivos}</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <div>Anuncios</div>
-                            <div>{publicidad ? "Si" : "No"}</div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </>
+        <div onClick={onClick} className="cursor-pointer p-6 border rounded-2xl bg-gray-900 text-white hover:bg-gray-800 transition-all shadow-lg">
+            <label htmlFor={`plan-${nombre}`} className="flex flex-col items-center gap-2">
+                <h2 className="text-xl font-bold text-blue-400">{nombre}</h2>
+                <input type="radio" name="plan" id={`plan-${nombre}`} className="hidden" />
+            </label>
+            <ul className="mt-4 space-y-2 text-gray-300">
+                <li><span className="font-semibold text-white">Precio Mensual:</span> {precio}€</li>
+                <li><span className="font-semibold text-white">Calidad de vídeo:</span> {calidad}</li>
+                <li><span className="font-semibold text-white">Dispositivos:</span> {dispositivos}</li>
+                <li><span className="font-semibold text-white">Anuncios:</span> {publicidad ? "Sí" : "No"}</li>
+            </ul>
+        </div>
     );
 }
