@@ -10,7 +10,7 @@ export default function Register() {
     });
 
     const [paginacion, setPaginacion] = useState(1);
-    const [usuarios, setUsuarios] = useState(4);
+    const [usuarios, setUsuarios] = useState(0);
     function anteriorPaso() {
         if (paginacion - 1 < 1) {
             setPaginacion(1);
@@ -28,7 +28,9 @@ export default function Register() {
     }
 
     function annadirUsuario() {
-        setUsuarios(usuarios + 1);
+        if (usuarios < 4) {
+            setUsuarios(usuarios + 1);
+        }
     }
 
     function ponerUsuarios(usuarios: number) {
@@ -226,6 +228,12 @@ export default function Register() {
                                 id="infantil"
                                 className="bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                             />
+                            <button
+                                onClick={annadirUsuario}
+                                className="bg-blue-700 hover:bg-blue-600 text-white p-3 rounded-full font-semibold transition duration-200"
+                            >
+                                Agregar usuario
+                            </button>
                         </div>
                         {ponerUsuarios(usuarios)}
                     </>
