@@ -4,12 +4,14 @@ export default function elegirPlan({
     calidad,
     precio,
     publicidad,
+    onClick
 }: {
     nombre: string;
     dispositivos: number;
     calidad: string;
     precio: number;
     publicidad: boolean;
+    onClick: () => void;
 }) {
     return (
         <>

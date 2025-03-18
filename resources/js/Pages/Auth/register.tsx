@@ -7,10 +7,18 @@ export default function Register() {
         email: "",
         password: "",
         password_confirmation: "",
+        plan: "",
+        usuarios: [] as { nombre: string; infantil: boolean }[],
     });
 
     const [paginacion, setPaginacion] = useState(1);
     const [usuarios, setUsuarios] = useState(0);
+    const [plan, setPlan] = useState("");
+
+    function elegirPlan(planElegido: string) {
+        setData("plan", planElegido);
+    }
+
     function anteriorPaso() {
         if (paginacion - 1 < 1) {
             setPaginacion(1);
@@ -77,65 +85,61 @@ export default function Register() {
                         >
                             Streamia
                         </a>
-                        <form
-                            onSubmit={submit}
-                            className="bg-stone-900 shadow-xl rounded-2xl p-8 w-full max-w-sm border border-stone-800"
-                        >
-                            <h2 className="text-xl font-semibold text-white mb-4 text-center">
-                                Crear cuenta
-                            </h2>
-                            <div className="flex flex-col gap-4">
-                                <input
-                                    type="text"
-                                    name="email"
-                                    value={data.email}
-                                    onChange={(e) =>
-                                        setData("email", e.target.value)
-                                    }
-                                    placeholder="Correo electrónico"
-                                    className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-                                />
-                                <input
-                                    type="password"
-                                    name="password"
-                                    value={data.password}
-                                    onChange={(e) =>
-                                        setData("password", e.target.value)
-                                    }
-                                    placeholder="Contraseña"
-                                    className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-                                />
-                                <input
-                                    type="password"
-                                    name="password_confirmation"
-                                    value={data.password_confirmation}
-                                    onChange={(e) =>
-                                        setData(
-                                            "password_confirmation",
-                                            e.target.value
-                                        )
-                                    }
-                                    placeholder="Confirmar contraseña"
-                                    className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-                                />
-                                <button
-                                    type="submit"
-                                    className="bg-blue-700 hover:bg-blue-600 text-white p-3 rounded-full font-semibold transition duration-200"
-                                    disabled={processing}
-                                >
-                                    Registrarse
-                                </button>
-                            </div>
-                            <div className="text-center mt-4 text-sm text-gray-400">
-                                ¿Ya tienes cuenta?{" "}
-                                <a
-                                    href="/login"
-                                    className="text-blue-500 hover:underline"
-                                >
-                                    Inicia sesión
-                                </a>
-                            </div>
-                        </form>
+
+                        <h2 className="text-xl font-semibold text-white mb-4 text-center">
+                            Crear cuenta
+                        </h2>
+                        <div className="flex flex-col gap-4">
+                            <input
+                                type="text"
+                                name="email"
+                                value={data.email}
+                                onChange={(e) =>
+                                    setData("email", e.target.value)
+                                }
+                                placeholder="Correo electrónico"
+                                className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                            />
+                            <input
+                                type="password"
+                                name="password"
+                                value={data.password}
+                                onChange={(e) =>
+                                    setData("password", e.target.value)
+                                }
+                                placeholder="Contraseña"
+                                className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                            />
+                            <input
+                                type="password"
+                                name="password_confirmation"
+                                value={data.password_confirmation}
+                                onChange={(e) =>
+                                    setData(
+                                        "password_confirmation",
+                                        e.target.value
+                                    )
+                                }
+                                placeholder="Confirmar contraseña"
+                                className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                            />
+                            <button
+                                type="submit"
+                                className="bg-blue-700 hover:bg-blue-600 text-white p-3 rounded-full font-semibold transition duration-200"
+                                disabled={processing}
+                            >
+                                Registrarse
+                            </button>
+                        </div>
+                        <div className="text-center mt-4 text-sm text-gray-400">
+                            ¿Ya tienes cuenta?{" "}
+                            <a
+                                href="/login"
+                                className="text-blue-500 hover:underline"
+                            >
+                                Inicia sesión
+                            </a>
+                        </div>
                     </>
                 ) : paginacion === 2 ? (
                     <>
@@ -147,30 +151,34 @@ export default function Register() {
                                 <Plan
                                     nombre="Basico"
                                     dispositivos={2}
-                                    calidad='1080p'
+                                    calidad="1080p"
                                     precio={5.99}
                                     publicidad={true}
+                                    onClick={() => elegirPlan("basico")}
                                 />
                                 <Plan
                                     nombre="Estándar"
                                     dispositivos={3}
-                                    calidad='Full HD'
+                                    calidad="Full HD"
                                     precio={10.99}
                                     publicidad={false}
+                                    onClick={() => elegirPlan("estandar")}
                                 />
                                 <Plan
                                     nombre="Premium"
                                     dispositivos={4}
-                                    calidad='4K HDR'
+                                    calidad="4K HDR"
                                     precio={15.99}
                                     publicidad={false}
+                                    onClick={() => elegirPlan("premium")}
                                 />
                                 <Plan
                                     nombre="Familiar"
                                     dispositivos={6}
-                                    calidad='4K HDR'
+                                    calidad="4K HDR"
                                     precio={19.99}
                                     publicidad={false}
+                                    onClick={() => elegirPlan("familiar")}
                                 />
                             </div>
                         </section>
