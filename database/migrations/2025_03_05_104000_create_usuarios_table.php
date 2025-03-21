@@ -9,16 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('cuenta_id')->constrained('cuentas')->onDelete('cascade');
             $table->string('nombre');
-            $table->foreignId('cuentas_id')->constrained('cuentas')->onDelete('cascade');
-            $table->boolean('cuenta_para_menores')->default(false);
+            $table->boolean('infantil')->default(false);
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

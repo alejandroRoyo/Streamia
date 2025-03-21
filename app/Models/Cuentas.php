@@ -21,8 +21,9 @@ class Cuentas extends Authenticatable
     protected $fillable = [
         'email',
         'password',
-        'plan contratado'
+        'plan_de_pago',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,5 +46,10 @@ class Cuentas extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function usuarios()
+    {
+        return $this->hasMany(Usuario::class, 'cuenta_id');
     }
 }

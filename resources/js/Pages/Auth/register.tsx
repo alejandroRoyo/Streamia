@@ -105,13 +105,6 @@ export default function Register() {
                                 placeholder="Confirmar contraseña"
                                 className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                             />
-                            <button
-                                type="submit"
-                                className="bg-blue-700 hover:bg-blue-600 text-white p-3 rounded-full font-semibold transition duration-200"
-                                disabled={processing}
-                            >
-                                Registrarse
-                            </button>
                         </div>
                     </>
                 ) : paginacion === 2 ? (
