@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Models\Usuario;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -28,15 +31,27 @@ Route::middleware('guest')->group(function () {
     })->name('register');
 
     Route::post('/register', [RegisterController::class, 'register']);
-    // Route::post('/register', function () {
-    //     dd(request()->all());
-    // });
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('/protegida', function () {
         return Inertia::render('Protegida');
     })->name('protegida');
+
+    // Ruta para mostrar la selección de usuario vinculado
+    Route::get('/seleccion-usuario', function () {
+        $cuentaId = Auth::user()->id;  // Aquí aseguramos que obtienes el ID de la cuenta autenticada
+        $usuarios = Usuario::where('cuenta_id', $cuentaId)->get();
+        return Inertia::render('RegisterUsers/SelectUser', ['usuarios' => $usuarios]);
+    });
+
+    // Ruta para procesar la selección del usuario vinculado
+    Route::post('/usuario-seleccionado', function (Request $request) {
+        $usuario = Usuario::findOrFail($request->usuarioId);
+        session(['usuario_vinculado' => $usuario]);  // Guardamos el usuario seleccionado en la sesión
+
+        return redirect('/protegida');  // Redirigimos a la página principal
+    });
 });
 
 require __DIR__ . '/auth.php';

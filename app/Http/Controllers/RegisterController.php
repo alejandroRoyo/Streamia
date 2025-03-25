@@ -33,6 +33,6 @@ class RegisterController extends Controller
         Auth::login($cuenta);
 
         // Redirige al usuario a la página de inicio
-        return redirect('/');
+        return redirect('/seleccion-usuario');
     }
 }
