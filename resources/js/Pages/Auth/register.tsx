@@ -25,7 +25,7 @@ export default function Register() {
     }
 
     function siguientePaso() {
-        setPaginacion((prev) => Math.min(3, prev + 1));
+        setPaginacion((prev) => Math.min(4, prev + 1));
     }
 
     // Agregar un usuario a la lista (máximo 5)
@@ -110,6 +110,12 @@ export default function Register() {
                 ) : paginacion === 2 ? (
                     // Segundo paso: Selección de plan
                     <>
+                    <a
+                            href="/"
+                            className="text-4xl font-extrabold text-white mb-6"
+                        >
+                            Streamia
+                        </a>
                         <h2 className="text-3xl text-white font-semibold text-center mb-5">
                             Elige tu plan
                         </h2>
@@ -140,9 +146,54 @@ export default function Register() {
                             />
                         </div>
                     </>
-                ) : (
-                    // Tercer paso: Creación de usuarios
+                ) : paginacion === 3 ? (
+                    // Tercer paso: Elegir como quieres pagar
                     <>
+                        <a
+                            href="/"
+                            className="text-4xl font-extrabold text-white mb-6"
+                        >
+                            Streamia
+                        </a>
+                        <h2 className="text-xl font-semibold text-white mb-4 text-center">
+                            Configura tu targeta de crédito o débito
+                        </h2>
+                        <div className="flex flex-col gap-4">
+                            <input
+                                type="text"
+                                name="numTargeta"
+                                placeholder="Número de targeta"
+                                className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                            />
+                            <input
+                                type="text"
+                                name="fechaVencimiento"
+                                placeholder="Fecha de vencimiento"
+                                className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                            />
+                            <input
+                                type="number"
+                                name="CVV"
+                                placeholder="CVV"
+                                className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                            />
+                            <input
+                                type="text"
+                                name="nameTargeta"
+                                placeholder="Número de targeta"
+                                className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                            />
+                        </div>
+                    </>
+                ) : (
+                    // Cuarto paso: Creación de usuarios
+                    <>
+                    <a
+                            href="/"
+                            className="text-4xl font-extrabold text-white mb-6"
+                        >
+                            Streamia
+                        </a>
                         <h2 className="text-white">
                             ¿Quién va a ver Streamia?
                         </h2>
