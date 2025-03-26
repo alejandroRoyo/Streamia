@@ -30,8 +30,13 @@ Route::middleware('guest')->group(function () {
         return Inertia::render('Auth/register');
     })->name('register');
 
+    Route::get('/home', function () {
+        return Inertia::render('RegisterUsers/Home');
+    })->name('Home');
+
     Route::post('/register', [RegisterController::class, 'register']);
 });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/protegida', function () {
