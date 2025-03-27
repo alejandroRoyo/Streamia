@@ -34,6 +34,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'usuario_vinculado' => fn() => session('usuario_vinculado', null),
         ];
     }
 }

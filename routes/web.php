@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     // Ruta para mostrar la selección de usuario vinculado
     Route::get('/seleccion-usuario', function () {
         $cuentaId = Auth::user()->id;  // Aquí aseguramos que obtienes el ID de la cuenta autenticada
-        $usuarios = Usuario::where('cuenta_id', $cuentaId)->get();
+        $usuarios = Usuario::where('cuenta_id', $cuentaId)->get(); // Obtenemos los usuarios vinculados a la cuenta autenticada comparando la columna cuenta_id con el ID de la cuenta
         return Inertia::render('RegisterUsers/SelectUser', ['usuarios' => $usuarios]);
     });
 
@@ -55,8 +55,12 @@ Route::middleware('auth')->group(function () {
         $usuario = Usuario::findOrFail($request->usuarioId);
         session(['usuario_vinculado' => $usuario]);  // Guardamos el usuario seleccionado en la sesión
 
-        return redirect('/protegida');  // Redirigimos a la página principal
+        return redirect('/home');  // Redirigimos a la página principal
     });
+
+    Route::get('/home', function () {
+        return Inertia::render('RegisterUsers/Home');
+    })->name('Home');
 });
 
 require __DIR__ . '/auth.php';

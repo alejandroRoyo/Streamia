@@ -20,6 +20,6 @@ class LoginController extends Controller
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
         Auth::login($user);
         // Si las credenciales son válidas, redirige al usuario a la página de inicio
-        return redirect('/');
+        return redirect('/seleccion-usuario');
     }
 }

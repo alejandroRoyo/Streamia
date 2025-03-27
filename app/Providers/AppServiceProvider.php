@@ -25,8 +25,8 @@ class AppServiceProvider extends ServiceProvider
         Vite::prefetch(concurrency: 3);
 
         // Compartir el usuario vinculado globalmente con Inertia
-        Inertia::share([
-            'usuario_vinculado' => fn () => session('usuario_vinculado', null),
-        ]);
+        // Inertia::share([
+        //     'usuario_vinculado' => fn () => session('usuario_vinculado', null),
+        // ]);
     }
 }
