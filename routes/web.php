@@ -61,6 +61,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', function () {
         return Inertia::render('RegisterUsers/Home');
     })->name('Home');
+
+    Route::get('/logout', function(){
+        Auth::logout();
+        return redirect('/');
+    });
 });
 
 require __DIR__ . '/auth.php';

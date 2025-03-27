@@ -50,6 +50,12 @@ export default function Navbar() {
                     >
                         {usuario.nombre}
                     </a>
+                    <a
+                        href="/logout"
+                        className="bg-blue-700 hover:bg-blue-600 text-white px-5 py-2 rounded-full font-semibold transition duration-200"
+                    >
+                        Logout
+                    </a>
                 </div>
             ) : (
                 <div className="flex gap-4">
