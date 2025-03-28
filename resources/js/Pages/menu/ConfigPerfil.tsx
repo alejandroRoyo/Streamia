@@ -1,4 +1,14 @@
+import { usePage } from "@inertiajs/react";
+interface Usuario {
+    id: number;
+    nombre: string;
+    infantil: boolean;
+    cuenta_id: number;
+}
+
 export default function ConfigPerfil() {
+    const { usuario_vinculado } = usePage().props;
+    const usuario = usuario_vinculado as Usuario;
     return (
         <>
             <div>
@@ -12,7 +22,7 @@ export default function ConfigPerfil() {
             </ul>
             <button>Guardar Cambios</button>
             <button>Eliminar Perfil</button>
-            <div>Aquí dentro se mostrará la información actual del usuario</div>
+            <div><p>{usuario.nombre}</p></div>
         </>
     );
 }

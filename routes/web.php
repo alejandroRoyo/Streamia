@@ -39,9 +39,10 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/protegida', function () {
-        return Inertia::render('Protegida');
-    })->name('protegida');
+    Route::get('/config', function () {
+        return Inertia::render('menu/ConfigPerfil');
+    })->name('config');
+
 
     // Ruta para mostrar la selección de usuario vinculado
     Route::get('/seleccion-usuario', function () {
