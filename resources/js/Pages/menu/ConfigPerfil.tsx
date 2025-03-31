@@ -17,6 +17,7 @@ export default function ConfigPerfil() {
             <div>
                 <p>Modificar datos de la cuenta</p>
                 <form action="/configPerfil" method="POST">
+                <img src="perfil/user1.png" alt="Perfil" className="w-20 h-20 rounded-full"/>
                     <input type="text" name="email" value={usuario.nombre} />
                     <p>¿Perfil infántil?</p>
                     <input

@@ -13,6 +13,7 @@ class Usuario extends Model
         'cuenta_id',
         'nombre',
         'infantil',
+        'imagenPerfil',
     ];
 
     public function cuenta()

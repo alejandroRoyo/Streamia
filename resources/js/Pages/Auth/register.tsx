@@ -10,6 +10,7 @@ export default function Register() {
         password_confirmation: "",
         plan: "",
         usuarios: [{nombre: "", infantil: false}] as { nombre: string; infantil: boolean }[], 
+        imagenPerfil: "perfil/user1.png",
     });
 
     const [paginacion, setPaginacion] = useState(1); // Controla la página actual del formulario

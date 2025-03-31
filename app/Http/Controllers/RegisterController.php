@@ -26,6 +26,7 @@ class RegisterController extends Controller
                 'cuenta_id' => $cuenta->id,
                 'nombre' => $usuario['nombre'],
                 'infantil' => $usuario['infantil'],
+                'imagenPerfil' => $request->imagenPerfil,
             ]);
         }
 
