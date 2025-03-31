@@ -14,15 +14,27 @@ export default function ConfigPerfil() {
             <div>
                 <h1>Configuracion</h1>
             </div>
+            <div>
+                <p>Modificar datos de la cuenta</p>
+                <form action="/configPerfil" method="POST">
+                    <input type="text" name="email" value={usuario.nombre} />
+                    <p>¿Perfil infántil?</p>
+                    <input
+                        type="checkbox"
+                        name="infantil"
+                        checked={usuario.infantil}
+                    />
+                    <button>Guardar Cambios</button>
+                    <button>Cambiar Imagen</button>
+                    <button>Eliminar Perfil</button>
+                </form>
+            </div>
             <ul>
-                <li>Nombre</li>
-                <li>Icono</li>
-                <li>Infantil</li>
-                <li>Cuenta</li>
+                <li>Nombre: {usuario.nombre}</li>
+                <li>Imagen de perfil:</li>
+                <li>Infantil: {usuario.infantil ? "Si" : "No"}</li>
+                <li>Cuenta {usuario.cuenta_id}</li>
             </ul>
-            <button>Guardar Cambios</button>
-            <button>Eliminar Perfil</button>
-            <div><p>{usuario.nombre}</p></div>
         </>
     );
 }

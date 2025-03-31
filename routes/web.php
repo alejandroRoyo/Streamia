@@ -39,11 +39,13 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/config', function () {
+    Route::get('/configPerfil', function () {
         return Inertia::render('menu/ConfigPerfil');
-    })->name('config');
+    })->name('configPerfil');
 
-
+    Route::get('/configCuenta', function () {
+        return Inertia::render('menu/ConfigCuenta');
+    })->name('configCuenta');
     // Ruta para mostrar la selección de usuario vinculado
     Route::get('/seleccion-usuario', function () {
         $cuentaId = Auth::user()->id;  // Aquí aseguramos que obtienes el ID de la cuenta autenticada
@@ -63,7 +65,7 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('RegisterUsers/Home');
     })->name('Home');
 
-    Route::get('/logout', function(){
+    Route::get('/logout', function () {
         Auth::logout();
         return redirect('/');
     });
