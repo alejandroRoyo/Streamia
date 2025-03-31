@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('plan_de_pago', ['null', 'basico', 'estandar', 'premium'])->default('null');
+            $table->enum('plan_de_pago', ['basico', 'estandar', 'premium'])->default('basico');
+            $table->enum('tipo', ['cliente', 'administrador'])->default('cliente'); 
             $table->timestamps();
         });
     }

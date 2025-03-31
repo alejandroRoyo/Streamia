@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('cuenta_id')->constrained('cuentas')->onDelete('cascade');
             $table->string('nombre');
             $table->boolean('infantil')->default(false);
+            $table->string('imagen');
             $table->timestamps();
         });
     }
