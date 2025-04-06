@@ -9,7 +9,10 @@ export default function Register() {
         password: "",
         password_confirmation: "",
         plan: "",
-        usuarios: [{nombre: "", infantil: false}] as { nombre: string; infantil: boolean }[], 
+        usuarios: [{ nombre: "", infantil: false }] as {
+            nombre: string;
+            infantil: boolean;
+        }[],
         imagenPerfil: "perfil/user1.png",
     });
 
@@ -43,7 +46,7 @@ export default function Register() {
     function actualizarUsuario(
         index: number,
         campo: "nombre" | "infantil",
-        valor: string | boolean
+        valor: string | boolean,
     ) {
         const nuevosUsuarios = [...data.usuarios]; // Copia del array
         nuevosUsuarios[index] = { ...nuevosUsuarios[index], [campo]: valor }; // Modificación del usuario
@@ -65,14 +68,14 @@ export default function Register() {
                     <>
                         <a
                             href="/"
-                            className="text-4xl font-extrabold text-white mb-6"
+                            className="text-4xl font-extrabold text-white mb-6 block text-center"
                         >
                             Streamia
                         </a>
                         <h2 className="text-xl font-semibold text-white mb-4 text-center">
                             Crear cuenta
                         </h2>
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
                             <input
                                 type="text"
                                 name="email"
@@ -100,7 +103,7 @@ export default function Register() {
                                 onChange={(e) =>
                                     setData(
                                         "password_confirmation",
-                                        e.target.value
+                                        e.target.value,
                                     )
                                 }
                                 placeholder="Confirmar contraseña"
@@ -111,9 +114,9 @@ export default function Register() {
                 ) : paginacion === 2 ? (
                     // Segundo paso: Selección de plan
                     <>
-                    <a
+                        <a
                             href="/"
-                            className="text-4xl font-extrabold text-white mb-6"
+                            className="text-4xl font-extrabold text-white mb-6 block text-center"
                         >
                             Streamia
                         </a>
@@ -152,18 +155,18 @@ export default function Register() {
                     <>
                         <a
                             href="/"
-                            className="text-4xl font-extrabold text-white mb-6"
+                            className="text-4xl font-extrabold text-white mb-6 block text-center"
                         >
                             Streamia
                         </a>
                         <h2 className="text-xl font-semibold text-white mb-4 text-center">
-                            Configura tu targeta de crédito o débito
+                            Configura tu tarjeta de crédito o débito
                         </h2>
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
                             <input
                                 type="text"
                                 name="numTargeta"
-                                placeholder="Número de targeta"
+                                placeholder="Número de tarjeta"
                                 className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                             />
                             <input
@@ -181,7 +184,7 @@ export default function Register() {
                             <input
                                 type="text"
                                 name="nameTargeta"
-                                placeholder="Número de targeta"
+                                placeholder="Nombre en la tarjeta"
                                 className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                             />
                         </div>
@@ -189,63 +192,70 @@ export default function Register() {
                 ) : (
                     // Cuarto paso: Creación de usuarios
                     <>
-                    <a
+                        <a
                             href="/"
-                            className="text-4xl font-extrabold text-white mb-6"
+                            className="text-4xl font-extrabold text-white mb-6 block text-center"
                         >
                             Streamia
                         </a>
-                        <h2 className="text-white">
+
+                        <h2 className="text-2xl text-white font-semibold text-center mb-2">
                             ¿Quién va a ver Streamia?
                         </h2>
-                        <p className="text-white">
+                        <p className="text-white text-center mb-6">
                             Agrega hasta 5 perfiles personalizados.
                         </p>
 
-                        {data.usuarios.map((usuario, index) => (
-                            <div key={index} className="flex flex-col gap-2">
-                                <input
-                                    type="text"
-                                    value={usuario.nombre}
-                                    onChange={(e) =>
-                                        actualizarUsuario(
-                                            index,
-                                            "nombre",
-                                            e.target.value
-                                        )
-                                    }
-                                    placeholder="Nombre del usuario"
-                                    className="bg-stone-800 text-white border border-stone-700 rounded"
-                                />
-                                <label className="text-white flex items-center gap-2">
+                        <div className="flex flex-col gap-6 w-full max-w-md mx-auto">
+                            {data.usuarios.map((usuario, index) => (
+                                <div
+                                    key={index}
+                                    className="flex flex-col gap-2"
+                                >
                                     <input
-                                        type="checkbox"
-                                        checked={usuario.infantil}
+                                        type="text"
+                                        value={usuario.nombre}
                                         onChange={(e) =>
                                             actualizarUsuario(
                                                 index,
-                                                "infantil",
-                                                e.target.checked
+                                                "nombre",
+                                                e.target.value,
                                             )
                                         }
+                                        placeholder="Nombre del usuario"
+                                        className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                                     />
-                                    Perfil infantil
-                                </label>
-                            </div>
-                        ))}
+                                    <label className="text-white flex items-center gap-2">
+                                        <input
+                                            type="checkbox"
+                                            checked={usuario.infantil}
+                                            onChange={(e) =>
+                                                actualizarUsuario(
+                                                    index,
+                                                    "infantil",
+                                                    e.target.checked,
+                                                )
+                                            }
+                                            className="accent-blue-600"
+                                        />
+                                        Perfil infantil
+                                    </label>
+                                </div>
+                            ))}
 
-                        <button
-                            onClick={annadirUsuario}
-                            className="bg-blue-700 hover:bg-blue-600 text-white p-3 rounded-full"
-                        >
-                            Agregar usuario
-                        </button>
-                        <button
-                            onClick={submit}
-                            className="bg-blue-700 hover:bg-blue-600 text-white p-3 rounded-full mt-4"
-                        >
-                            Enviar
-                        </button>
+                            <button
+                                onClick={annadirUsuario}
+                                className="bg-blue-700 hover:bg-blue-600 text-white p-3 rounded-full font-semibold transition duration-200"
+                            >
+                                Agregar usuario
+                            </button>
+                            <button
+                                onClick={submit}
+                                className="bg-blue-700 hover:bg-blue-600 text-white p-3 rounded-full mt-2 font-semibold transition duration-200"
+                            >
+                                Enviar
+                            </button>
+                        </div>
                     </>
                 )}
 

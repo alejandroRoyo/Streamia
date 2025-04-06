@@ -20,22 +20,20 @@ export default function SelectUser() {
     };
 
     return (
-        <div>
-            <h1>Selecciona tu perfil de usuario</h1>
-            <ul>
+        <div className="min-h-screen bg-gray-50 dark:bg-black flex flex-col items-center justify-center p-5">
+            <h1 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-200">
+                Selecciona tu perfil de usuario
+            </h1>
+            <ul className="w-full max-w-md">
                 {usuarios.map((usuario) => (
                     <li
                         key={usuario.id}
                         onClick={() => seleccionarUsuario(usuario.id)}
-                        style={{
-                            cursor: 'pointer',
-                            margin: '10px 0',
-                            padding: '10px',
-                            border: '1px solid #ccc',
-                            borderRadius: '5px',
-                        }}
+                        className="cursor-pointer mb-4 p-4 border border-gray-300 rounded-lg hover:bg-blue-100 dark:border-gray-600 dark:hover:bg-gray-800 transition duration-200"
                     >
-                        {usuario.nombre} {usuario.cuenta_para_niños ? '👶' : ''}
+                        <span className="text-lg text-gray-700 dark:text-gray-300">
+                            {usuario.nombre} {usuario.cuenta_para_niños ? '👶' : ''}
+                        </span>
                     </li>
                 ))}
             </ul>
