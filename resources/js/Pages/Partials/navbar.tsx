@@ -4,6 +4,7 @@ interface Usuario {
     nombre: string;
     infantil: boolean;
     cuenta_id: number;
+    imagenPerfil: string;
 }
 
 interface Auth {
@@ -31,10 +32,10 @@ export default function Navbar() {
 
     console.log(valorCheck(autenticado));
     return (
-        <nav className="flex items-center justify-between p-6 shadow-lg bg-stone-950 ">
+        <nav className="flex items-center justify-between px-6 py-4 bg-stone-950 shadow-md">
             <a
                 href="/"
-                className="relative flex items-center justify-center w-16 h-16 md:w-20 md:h-20 transition duration-200 hover:opacity-90"
+                className="relative flex items-center justify-center w-16 h-16 md:w-20 md:h-20 transition-transform duration-200 hover:scale-105"
             >
                 {/* Capa externa con degradado */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-red-600 via-purple-700 to-black"></div>
@@ -55,50 +56,58 @@ export default function Navbar() {
             </a>
 
             {valorCheck(autenticado) ? (
-                <div className="flex gap-4">
+                <div className="flex items-center gap-4">
                     <a
                         href="/"
-                        className="bg-blue-700 hover:bg-blue-600 text-white px-5 py-2 rounded-full font-semibold transition duration-200"
+                        className="px-5 py-2 text-sm md:text-base font-semibold text-white bg-blue-600 rounded-full transition-colors duration-200 hover:bg-blue-500"
                     >
                         Buscar
                     </a>
 
                     <a
                         href="/"
-                        className="bg-blue-700 hover:bg-blue-600 text-white px-5 py-2 rounded-full font-semibold transition duration-200"
+                        className="px-5 py-2 text-sm md:text-base font-semibold text-white bg-blue-600 rounded-full transition-colors duration-200 hover:bg-blue-500"
                     >
                         Mi lista
                     </a>
+
                     <a
                         href="/home"
-                        className="bg-blue-700 hover:bg-blue-600 text-white px-5 py-2 rounded-full font-semibold transition duration-200"
+                        className="px-5 py-2 text-sm md:text-base font-semibold text-white bg-blue-600 rounded-full transition-colors duration-200 hover:bg-blue-500"
                     >
                         Página principal
                     </a>
+
                     <a
                         href="/"
-                        className="bg-blue-700 hover:bg-blue-600 text-white px-5 py-2 rounded-full font-semibold transition duration-200"
+                        className="flex items-center gap-2 px-5 py-2 text-sm md:text-base font-semibold text-white bg-blue-600 rounded-full transition-colors duration-200 hover:bg-blue-500"
                     >
                         {usuario.nombre}
+                        <img
+                            src={usuario.imagenPerfil}
+                            alt="Perfil"
+                            className="w-10 h-10 rounded-full border-2 border-white"
+                        />
                     </a>
+
                     <a
                         href="/logout"
-                        className="bg-blue-700 hover:bg-blue-600 text-white px-5 py-2 rounded-full font-semibold transition duration-200"
+                        className="px-5 py-2 text-sm md:text-base font-semibold text-white bg-blue-600 rounded-full transition-colors duration-200 hover:bg-blue-500"
                     >
                         Logout
                     </a>
                 </div>
             ) : (
-                <div className="flex gap-4">
+                <div className="flex items-center gap-4">
                     <a
                         href="/login"
-                        className="text-white px-5 py-2 rounded-full font-semibold transition duration-200 hover:bg-stone-800"
+                        className="px-5 py-2 text-sm md:text-base font-semibold text-white rounded-full transition-colors duration-200 hover:bg-stone-800"
                     >
                         Iniciar Sesión
                     </a>
                     <a
                         href="/register"
-                        className="bg-blue-700 hover:bg-blue-600 text-white px-5 py-2 rounded-full font-semibold transition duration-200"
+                        className="px-5 py-2 text-sm md:text-base font-semibold text-white bg-blue-600 rounded-full transition-colors duration-200 hover:bg-blue-500"
                     >
                         Registrarse
                     </a>

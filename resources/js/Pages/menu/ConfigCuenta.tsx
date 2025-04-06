@@ -1,4 +1,5 @@
-import { usePage } from "@inertiajs/react";
+import { usePage, useForm } from "@inertiajs/react";
+
 interface Auth {
     user: {
         id: number;
@@ -12,27 +13,43 @@ interface Auth {
 export default function ConfigCuenta() {
     const { auth } = usePage().props;
     const autenticado = auth as Auth;
+
+    // Inicializamos el formulario con los datos actuales del usuario
+    const { data, setData, post } = useForm({
+        email: autenticado.user.email,
+        plan_de_pago: autenticado.user.plan_de_pago,
+    });
+
+    // Función para manejar el envío del formulario
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        // Se realiza la solicitud POST a '/configCuenta'
+        post('/configCuenta');
+    };
+
     return (
         <>
             <div>
-                <h1>Configuracion</h1>
+                <h1>Configuración</h1>
             </div>
             <div>
                 <p>Modificar datos de la cuenta</p>
-                <form action="/configCuenta" method="POST">
+                <form onSubmit={handleSubmit}>
                     <input
                         type="text"
                         name="email"
-                        value={autenticado.user.email}
+                        value={data.email}
+                        onChange={(e) => setData("email", e.target.value)}
                     />
                     <input
                         type="text"
                         name="plan_de_pago"
-                        value={autenticado.user.plan_de_pago}
+                        value={data.plan_de_pago}
+                        onChange={(e) => setData("plan_de_pago", e.target.value)}
                     />
-                    <button>Guardar Cambios</button>
-                    <button>Cambiar Contraseña</button>
-                    <button>Eliminar Perfil</button>
+                    <input type="submit" value="Guardar Cambios" />
+                    <button type="button">Cambiar Contraseña</button>
+                    <button type="button">Eliminar Perfil</button>
                 </form>
             </div>
             <div>
