@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('cuenta_id')->constrained('cuentas')->onDelete('cascade');
             $table->string('nombre');
             $table->boolean('infantil')->default(false);
-            $table->string('imagenPerfil')->default('perfil/user1.png');
+            $table->string('imagenPerfil')->default('perfil/perfilPredeterminado.png');
             $table->timestamps();
         });
     }
