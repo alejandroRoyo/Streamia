@@ -13,7 +13,7 @@ export default function Register() {
             nombre: string;
             infantil: boolean;
         }[],
-        imagenPerfil: "perfil/user1.png",
+        imagenPerfil: "perfil/perfilPredeterminado.png",
     });
 
     const [paginacion, setPaginacion] = useState(1); // Controla la página actual del formulario
