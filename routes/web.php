@@ -11,6 +11,7 @@ use App\Http\Requests\Auth\UpdateCuentaRequest;
 use App\Http\Controllers\UpdateCuentaController;
 use App\Http\Controllers\UpdatePerfilController;
 use App\Models\Usuario;
+use App\Models\Cuentas;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -71,6 +72,13 @@ Route::middleware('auth')->group(function () {
 
         return redirect('/home');  // Redirigimos a la página principal
     });
+
+    Route::get('/panelControl', function () {
+        $listado['perfil'] = Cuentas::all();
+        $listado['usuario'] = Usuario::all();
+        session(['listado' => $listado]);
+        return Inertia::render('Admin/PanelControl');
+    })->name('panelControl');
 
     Route::get('/home', function () {
         return Inertia::render('RegisterUsers/Home');

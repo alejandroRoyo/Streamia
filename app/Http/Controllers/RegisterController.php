@@ -23,12 +23,16 @@ class RegisterController extends Controller
 
         foreach ($request->usuarios as $usuario) {
             Usuario::create([
-                'cuenta_id' => $cuenta->id,
-                'nombre' => $usuario['nombre'],
-                'infantil' => $usuario['infantil'],
-                'imagenPerfil' => $request->imagenPerfil,
+                'cuenta_id'    => $cuenta->id,
+                'nombre'       => $usuario['nombre'],
+                'infantil'     => $usuario['infantil'],
+                // Si el usuario no envía imagen, usamos el valor por defecto:
+                'imagenPerfil' => isset($usuario['imagenPerfil']) && $usuario['imagenPerfil']
+                                  ? $usuario['imagenPerfil']
+                                  : 'perfil/perfilPredeterminado.png',
             ]);
         }
+        
 
         // Iniciar sesión automáticamente con el nuevo usuario
         Auth::login($cuenta);

@@ -19,7 +19,6 @@ interface Auth {
 }
 
 export default function Navbar() {
-    const check = false;
     function valorCheck(comprobar: Auth) {
         if (comprobar.user === null) {
             return false;
@@ -31,7 +30,6 @@ export default function Navbar() {
     const usuario = usuario_vinculado as Usuario;
     const autenticado = auth as Auth;
 
-    console.log(valorCheck(autenticado));
     return (
         <nav className="flex items-center justify-between px-6 py-4 bg-stone-950 shadow-md">
             <a
@@ -82,11 +80,11 @@ export default function Navbar() {
 
                     {autenticado.user.rol === "administrador" ? (
                         <a
-                        href="/panelControl"
-                        className="px-5 py-2 text-sm md:text-base font-semibold text-white bg-yellow-600 rounded-full transition-colors duration-200 hover:bg-yellow-500"
-                    >
-                        Panel de Control
-                    </a>
+                            href="/panelControl"
+                            className="px-5 py-2 text-sm md:text-base font-semibold text-white bg-yellow-600 rounded-full transition-colors duration-200 hover:bg-yellow-500"
+                        >
+                            Panel de Control
+                        </a>
                     ) : null}
                     <a
                         href="/"

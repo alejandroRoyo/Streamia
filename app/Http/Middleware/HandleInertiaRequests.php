@@ -35,6 +35,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'usuario_vinculado' => fn() => session('usuario_vinculado', null),
+            'listado' => fn() => session('listado', null),
         ];
     }
 }

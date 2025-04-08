@@ -9,18 +9,37 @@ export default function Register() {
         password: "",
         password_confirmation: "",
         plan: "",
-        usuarios: [{ nombre: "", infantil: false }] as {
+        usuarios: [
+            {
+                nombre: "",
+                infantil: false,
+                imagen: "perfil/perfil1.png",
+            },
+        ] as {
             nombre: string;
             infantil: boolean;
+            imagen: string;
         }[],
-        imagenPerfil: "perfil/perfilPredeterminado.png",
     });
 
     const [paginacion, setPaginacion] = useState(1); // Controla la página actual del formulario
+    const [planSeleccionado, setPlanSeleccionado] = useState<string | null>(
+        null,
+    );
+    const imagenesDisponibles = [
+        "perfil/perfil1.png",
+        "perfil/perfil2.png",
+        "perfil/perfil3.png",
+        "perfil/perfil4.png",
+        "perfil/perfil5.png",
+        "perfil/perfil6.png",
+        "perfil/perfil7.png",
+    ];
 
     // Función para seleccionar el plan
     function elegirPlan(planElegido: string) {
         setData("plan", planElegido);
+        setPlanSeleccionado(planElegido);
     }
 
     // Funciones para navegar entre los pasos del formulario
@@ -37,7 +56,11 @@ export default function Register() {
         if (data.usuarios.length < 5) {
             setData("usuarios", [
                 ...data.usuarios,
-                { nombre: "", infantil: false },
+                {
+                    nombre: "",
+                    infantil: false,
+                    imagen: "perfil/perfilPredeterminado.png",
+                },
             ]);
         }
     }
@@ -45,12 +68,17 @@ export default function Register() {
     // Actualizar los datos de un usuario en la lista
     function actualizarUsuario(
         index: number,
-        campo: "nombre" | "infantil",
+        campo: "nombre" | "infantil" | "imagen",
         valor: string | boolean,
     ) {
-        const nuevosUsuarios = [...data.usuarios]; // Copia del array
-        nuevosUsuarios[index] = { ...nuevosUsuarios[index], [campo]: valor }; // Modificación del usuario
-        setData("usuarios", nuevosUsuarios); // Actualización en el estado
+        const nuevosUsuarios = [...data.usuarios];
+        nuevosUsuarios[index] = { ...nuevosUsuarios[index], [campo]: valor };
+        setData("usuarios", nuevosUsuarios);
+    }
+    function eliminarUsuario(index: number) {
+        const nuevosUsuarios = [...data.usuarios];
+        nuevosUsuarios.splice(index, 1);
+        setData("usuarios", nuevosUsuarios);
     }
 
     // Manejo del envío del formulario
@@ -131,6 +159,7 @@ export default function Register() {
                                 precio={5.99}
                                 publicidad={true}
                                 onClick={() => elegirPlan("basico")}
+                                selected={planSeleccionado === "basico"}
                             />
                             <Plan
                                 nombre="Estándar"
@@ -139,6 +168,7 @@ export default function Register() {
                                 precio={10.99}
                                 publicidad={false}
                                 onClick={() => elegirPlan("estandar")}
+                                selected={planSeleccionado === "estandar"}
                             />
                             <Plan
                                 nombre="Premium"
@@ -147,6 +177,7 @@ export default function Register() {
                                 precio={15.99}
                                 publicidad={false}
                                 onClick={() => elegirPlan("premium")}
+                                selected={planSeleccionado === "premium"}
                             />
                         </div>
                     </>
@@ -190,7 +221,7 @@ export default function Register() {
                         </div>
                     </>
                 ) : (
-                    // Cuarto paso: Creación de usuarios
+                    // Paso 4: Creación de usuarios
                     <>
                         <a
                             href="/"
@@ -198,7 +229,6 @@ export default function Register() {
                         >
                             Streamia
                         </a>
-
                         <h2 className="text-2xl text-white font-semibold text-center mb-2">
                             ¿Quién va a ver Streamia?
                         </h2>
@@ -210,8 +240,18 @@ export default function Register() {
                             {data.usuarios.map((usuario, index) => (
                                 <div
                                     key={index}
-                                    className="flex flex-col gap-2"
+                                    className="border border-stone-700 p-4 rounded relative"
                                 >
+                                    {/* Botón para eliminar el usuario */}
+                                    <button
+                                        onClick={() => eliminarUsuario(index)}
+                                        className="absolute top-2 right-2 text-red-500 hover:text-red-400"
+                                        title="Eliminar usuario"
+                                    >
+                                        ✕
+                                    </button>
+
+                                    {/* Campo para el nombre del usuario */}
                                     <input
                                         type="text"
                                         value={usuario.nombre}
@@ -223,9 +263,11 @@ export default function Register() {
                                             )
                                         }
                                         placeholder="Nombre del usuario"
-                                        className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                                        className="p-3 bg-stone-800 text-white border border-stone-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 w-full"
                                     />
-                                    <label className="text-white flex items-center gap-2">
+
+                                    {/* Checkbox para perfil infantil */}
+                                    <label className="text-white flex items-center gap-2 mt-2">
                                         <input
                                             type="checkbox"
                                             checked={usuario.infantil}
@@ -240,6 +282,37 @@ export default function Register() {
                                         />
                                         Perfil infantil
                                     </label>
+
+                                    {/* Selección de imagen de perfil */}
+                                    <div className="mt-2">
+                                        <p className="text-white text-sm mb-1">
+                                            Elige una imagen de perfil:
+                                        </p>
+                                        <div className="flex gap-2">
+                                            {imagenesDisponibles.map(
+                                                (img, i) => (
+                                                    <img
+                                                        key={i}
+                                                        src={`/${img}`}
+                                                        alt={`Perfil ${i}`}
+                                                        onClick={() =>
+                                                            actualizarUsuario(
+                                                                index,
+                                                                "imagen",
+                                                                img,
+                                                            )
+                                                        }
+                                                        className={`w-12 h-12 rounded-full border cursor-pointer ${
+                                                            usuario.imagen ===
+                                                            img
+                                                                ? "border-blue-500"
+                                                                : "border-transparent"
+                                                        }`}
+                                                    />
+                                                ),
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
                             ))}
 
