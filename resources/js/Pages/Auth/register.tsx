@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Plan from "../Components/elegirPlan";
+import Plan from "../../components/ElegirPlan";
 import { Head, useForm } from "@inertiajs/react";
 
 export default function Register() {

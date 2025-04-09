@@ -1,5 +1,5 @@
-import Navbar from "@/Pages/Partials/navbar";
-import { SliderVideo } from "../Components/SliderVideo";
+import Navbar from "@/Partials/Navbar";
+import { SliderVideo } from "../../components/SliderVideo";
 
 export default function Home() {
     return (

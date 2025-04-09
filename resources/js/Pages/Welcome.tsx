@@ -1,7 +1,7 @@
 import { PageProps } from "@/types";
 import { Head, Link } from "@inertiajs/react";
-import Navbar from "@/Pages/Partials/navbar";
-import Precio from "@/Pages/Components/precio";
+import Navbar from "../Partials/navbar";
+import Precio from "@/components/Precio";
 
 export default function Welcome({
     auth,
